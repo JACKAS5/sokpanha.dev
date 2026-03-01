@@ -1,39 +1,11 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectFilter from "./ProjectFilter";
-
-const projects = [
-  {
-    title: "Cloud Portfolio Website",
-    description: "Modern portfolio deployed on AWS.",
-    tech: ["React", "TypeScript", "AWS"],
-    image: "/project1.jpg",
-    github: "#",
-    demo: "#",
-    category: "Frontend",
-  },
-  {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce system.",
-    tech: ["Node.js", "MongoDB"],
-    image: "/project2.jpg",
-    github: "#",
-    demo: "#",
-    category: "Fullstack",
-  },
-  {
-    title: "API Authentication Service",
-    description: "Secure JWT authentication API.",
-    tech: ["Node.js", "Express"],
-    image: "/project3.jpg",
-    github: "#",
-    demo: "#",
-    category: "Backend",
-  },
-];
+import { projects } from "../../config/projects";
+import type { Category } from "../../types/project";
 
 export default function ProjectGrid() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
 
   const filteredProjects =
     activeCategory === "All"
@@ -42,13 +14,14 @@ export default function ProjectGrid() {
 
   return (
     <div className="space-y-10">
-      {/* Category Filter */}
-      <ProjectFilter
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-      />
+      <ProjectFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
 
-      {/* Project Cards Grid */}
+      {filteredProjects.length === 0 && (
+        <p className="text-center text-gray-500 dark:text-gray-400">
+          No projects in this category.
+        </p>
+      )}
+
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project) => (
           <ProjectCard key={project.title} project={project} />
