@@ -1,5 +1,3 @@
-// src/pages/project/ProjectsPage.tsx
-
 import ProjectGrid from "../../components/ProjectsPage/ProjectGrid";
 
 interface PageProps {
@@ -8,22 +6,25 @@ interface PageProps {
 
 export default function ProjectsPage({ id }: PageProps) {
   return (
-    <section
-      id={id}
-      className="relative max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 scroll-mt-24 -mt-8 md:-mt-16 space-y-16"
-    >
-      {/* Page Header */}
-      <header className="text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-          Projects
+    <section id={id} className="scroll-mt-24 space-y-16">
+      {/* Page Header - Aligned with the rest of your brand */}
+      <header className="max-w-3xl">
+        <h2 className="text-blue-600 dark:text-blue-500 font-bold tracking-[0.2em] uppercase text-xs mb-3">
+          Selected Works
+        </h2>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
+          Showcasing digital <span className="text-blue-600 dark:text-blue-500">innovation</span>.
         </h1>
-        <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg md:text-xl">
-          A selection of projects showcasing my skills and experience.
+        <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg md:text-xl leading-relaxed">
+          A collection of projects spanning web and mobile development, 
+          built with a focus on clean code and user-centric design.
         </p>
       </header>
 
-      {/* Projects Grid */}
-      <ProjectGrid />
+      {/* Projects Grid - Now takes the full container width */}
+      <div className="pt-8">
+        <ProjectGrid />
+      </div>
     </section>
   );
 }

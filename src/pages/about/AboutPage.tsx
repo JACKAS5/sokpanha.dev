@@ -1,7 +1,6 @@
 import AboutHeader from "../../components/AboutPage/AboutHeader";
 import AboutIntro from "../../components/AboutPage/AboutIntro";
 import SkillsSection from "../../components/AboutPage/SkillsSection";
-{/* import ExperienceSection from "../../components/AboutPage/ExperienceSection"; */}
 import EducationSection from "../../components/AboutPage/EducationSection";
 import CertificationsSection from "../../components/AboutPage/CertificationsSection";
 import AboutIllustration from "../../components/AboutPage/AboutIllustration";
@@ -12,20 +11,28 @@ interface PageProps {
 
 export default function AboutPage({ id }: PageProps) {
   return (
-    <div
-      id={id}
-      className="relative max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 scroll-mt-24 -mt-8 md:-mt-16 space-y-16"
-    >
+    <div id={id} className="scroll-mt-24 space-y-24">
+      {/* Header section - Full width of the container */}
       <AboutHeader />
-      <div className="flex flex-col md:flex-row items-center gap-12">
-        <div className="flex-1 space-y-8">
+
+      {/* Main Content Grid */}
+      <div className="flex flex-col lg:flex-row items-start gap-16 md:gap-24">
+        
+        {/* Narrative & Credentials Column */}
+        <div className="flex-[1.5] space-y-16">
           <AboutIntro />
-          <SkillsSection />
-          {/* <ExperienceSection /> */}
-          <EducationSection />
-          <CertificationsSection />
+          
+          <div className="grid grid-cols-1 gap-16">
+            <SkillsSection />
+            <EducationSection />
+            <CertificationsSection />
+          </div>
         </div>
-        <AboutIllustration />
+
+        {/* Visual Column - Sticky on Desktop */}
+        <div className="flex-1 sticky top-32 hidden lg:block">
+          <AboutIllustration />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 const education = [
-  { degree: "BSc in Engineering", school: "Institute of Technology of Cambodia", period: "201x- 202x" },
+  { degree: "Ass. Software Engineering", school: "Tux Global Institue", period: "201x- 202x" },
 ];
 
 export default function EducationSection() {
