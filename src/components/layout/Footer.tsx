@@ -13,7 +13,7 @@ const Footer = () => {
         {/* Social Links */}
         <div className="flex space-x-6">
           <a
-            href="https://www.linkedin.com/in/your-linkedin"
+            href="https://www.linkedin.com/in/sokpanha-prak-b88540350"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
@@ -21,7 +21,7 @@ const Footer = () => {
             <FaLinkedin size={20} />
           </a>
           <a
-            href="https://github.com/your-github"
+            href="https://github.com/JACKAS5"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
@@ -29,7 +29,7 @@ const Footer = () => {
             <FaGithub size={20} />
           </a>
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:praksokpanha12@gmail.com"
             className="hover:text-white transition"
           >
             <FaEnvelope size={20} />
