@@ -5,6 +5,7 @@ export type Category = "Frontend" | "Backend" | "Fullstack";
 export type TechStack = {
   name: string;
   icon: IconType;
+  color: string;
 };
 
 export type Project = {
