@@ -9,15 +9,16 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-500">
-      {/* Navbar */}
       <Navbar />
 
-      {/* Main content: add padding-top equal to navbar height */}
-      <main className="flex-1 relative max-w-7xl w-full mx-auto px-6 md:px-12 pt-24">
+      {/* FIXED: Reduced pt-24 to pt-20. 
+          Removed max-w-7xl/px-12 from here if you prefer 
+          to let the children (sections) handle their own side padding.
+      */}
+      <main className="flex-1 relative pt-20">
         {children}
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
