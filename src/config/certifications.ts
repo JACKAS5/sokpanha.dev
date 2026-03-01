@@ -5,7 +5,7 @@ export const STATIC_CERTIFICATIONS: Certification[] = [
         id: "aws-consultant-2024",
         title: "AWS Cloud Technology Consultant Specialization",
         issuer: "Amazon Web Services (AWS)",
-        year: "2024",
+        year: "2025",
         logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
         credentialUrl: "https://coursera.org/share/51970664b8a83372ac7a207fb60c0f2e"
     },
