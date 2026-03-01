@@ -1,14 +1,13 @@
+import type { Category } from "../../types/project";
+import type { Dispatch, SetStateAction } from "react";
+import { categories } from "../../config/categories";
+
 type Props = {
-  activeCategory: string;
-  setActiveCategory: (category: string) => void;
+  activeCategory: Category | "All";
+  setActiveCategory: Dispatch<SetStateAction<Category | "All">>;
 };
 
-const categories = ["All", "Frontend", "Backend", "Fullstack"];
-
-export default function ProjectFilter({
-  activeCategory,
-  setActiveCategory,
-}: Props) {
+export default function ProjectFilter({ activeCategory, setActiveCategory }: Props) {
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {categories.map((category) => {
