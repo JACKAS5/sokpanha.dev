@@ -1,7 +1,7 @@
 import AboutHeader from "../../components/AboutPage/AboutHeader";
 import AboutIntro from "../../components/AboutPage/AboutIntro";
 import SkillsSection from "../../components/AboutPage/SkillsSection";
-import ExperienceSection from "../../components/AboutPage/ExperienceSection";
+{/* import ExperienceSection from "../../components/AboutPage/ExperienceSection"; */}
 import EducationSection from "../../components/AboutPage/EducationSection";
 import CertificationsSection from "../../components/AboutPage/CertificationsSection";
 import AboutIllustration from "../../components/AboutPage/AboutIllustration";
@@ -21,7 +21,7 @@ export default function AboutPage({ id }: PageProps) {
         <div className="flex-1 space-y-8">
           <AboutIntro />
           <SkillsSection />
-          <ExperienceSection />
+          {/* <ExperienceSection /> */}
           <EducationSection />
           <CertificationsSection />
         </div>
