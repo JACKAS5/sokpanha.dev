@@ -26,7 +26,7 @@ export const projects: Project[] = [
     description: "This project implements secure user authentication using JWT access and refresh tokens, password hashing with bcrypt, automated testing, Docker containerization, and pre-commit hooks for automatic code quality enforcement.",
     tech: [techMap.Python, techMap.Flask, techMap.MongoDB, techMap.Pytest ,techMap.Docker, techMap.Postman],
     image: "/project3.jpg",
-    github: "#",
+    github: "https://github.com/JACKAS5/flask-auth-mongo",
     demo: "#",
     category: "Backend",
   },
