@@ -10,7 +10,7 @@ Optimized for recruiters to view your work online.
 
 ## 🌐 Live Demo
 
-[View Portfolio on GitHub Pages](https://yourusername.github.io/sokpanha-portfolio)
+[View Portfolio on GitHub Pages](https://jackas5.github.io/sokpanha.dev)
 
 ---
 
