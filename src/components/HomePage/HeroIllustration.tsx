@@ -1,3 +1,5 @@
+import heroIllustration from "../../assets/hero-illustration.svg";
+
 export default function HeroIllustration() {
   return (
     <div className="relative group">
@@ -5,8 +7,7 @@ export default function HeroIllustration() {
       <div className="absolute inset-0 bg-blue-400/20 dark:bg-blue-600/10 blur-[80px] rounded-full scale-75 group-hover:scale-100 transition-transform duration-1000" />
 
       <img
-        // Note: Paths in public folder should start with /
-        src="/assets/hero-illustration.svg" 
+        src={heroIllustration}
         alt="Hero Illustration"
         className="relative z-10 w-64 md:w-[450px] lg:w-[500px] h-auto mx-auto 
                    transition-all duration-700 ease-in-out
