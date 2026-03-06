@@ -38,5 +38,14 @@ export const projects: Project[] = [
     github: "https://github.com/JACKAS5/Netflix-Clone",
     demo: "https://netflix-clone-xkdh.onrender.com",
     category: "Fullstack"
+  },
+  {
+    title: "AngkorLance",
+    description: "is a modern freelancing marketplace platform designed to connect clients with freelancers. The platform aims to make it easy for businesses to post jobs and for talented professionals to find work opportunities. The concept is inspired by platforms such as Upwork, Fiverr, and Freelancer.com, but focuses on supporting freelancers and clients in Cambodia and Southeast Asia.",
+    tech: [techMap.SpringBoot, techMap.React, techMap.TypeScript, techMap.Tailwind, techMap.PostgreSQL, techMap.Docker],
+    image: "",
+    github: "https://github.com/Panhavoan-Kymeas/AngkorLance/",
+    demo: "#",
+    category: "Fullstack"
   }
 ];
