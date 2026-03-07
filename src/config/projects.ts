@@ -43,7 +43,7 @@ export const projects: Project[] = [
     title: "AngkorLance",
     description: "is a modern freelancing marketplace platform designed to connect clients with freelancers. The platform aims to make it easy for businesses to post jobs and for talented professionals to find work opportunities. The concept is inspired by platforms such as Upwork, Fiverr, and Freelancer.com, but focuses on supporting freelancers and clients in Cambodia and Southeast Asia.",
     tech: [techMap.SpringBoot, techMap.React, techMap.TypeScript, techMap.Tailwind, techMap.PostgreSQL, techMap.Docker],
-    image: "",
+    image: "https://github.com/Panhavoan-Kymeas/AngkorLance/blob/main/frontend/screenshots/guest-landing-page.png?raw=true",
     github: "https://github.com/Panhavoan-Kymeas/AngkorLance/",
     demo: "#",
     category: "Fullstack"
