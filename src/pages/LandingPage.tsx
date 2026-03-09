@@ -12,7 +12,7 @@ export default function LandingPage() {
       {/* Home Section: Usually takes full viewport height.
         We pass the ID here so the Navbar can jump to it.
       */}
-      <HomePage id="home" />
+      <HomePage id="" />
 
       {/* Lazy Loaded Sections 
         We use a wrapper to control the vertical rhythm between pages.

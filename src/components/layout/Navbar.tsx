@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import MobileMenu from "../MobileMenu/MobileMenu";
@@ -8,83 +8,73 @@ import { navigation } from "../../config/navigation";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const [activeId, setActiveId] = useState<string>("home");
+  const navigate = useNavigate();
+  const [activeId, setActiveId] = useState("home");
 
-  // Update active section while scrolling on landing page
   useEffect(() => {
-    if (location.pathname !== "/") return; 
+    if (location.pathname === "/") {
+      // LandingPage scroll tracking
+      let frame: number;
+      const updateActive = () => {
+        const scrollPos = window.scrollY + 100;
+        let current = "home";
+        navigation.forEach((item) => {
+          const id = item.path === "/" ? "home" : item.path.slice(1);
+          const el = document.getElementById(id);
+          if (el && scrollPos >= el.offsetTop) current = id;
+        });
+        setActiveId(current);
+      };
+      const handleScroll = () => (frame = requestAnimationFrame(updateActive));
+      window.addEventListener("scroll", handleScroll);
+      updateActive();
 
-    let frame: number;
-
-    const updateActive = () => {
-      const scrollPos = window.scrollY + 100;
-      let current = "home";
-
-      for (const item of navigation) {
-        const sectionId = item.path === "/" ? "home" : item.path.slice(1);
-        const section = document.getElementById(sectionId);
-        if (section && scrollPos >= section.offsetTop) current = sectionId;
-      }
-
-      setActiveId(current);
-    };
-
-    const handleScroll = () => {
-      frame = requestAnimationFrame(updateActive);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    updateActive();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(frame);
-    };
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        cancelAnimationFrame(frame);
+      };
+    } else {
+      // Other routes: schedule state update asynchronously
+      const id = location.pathname.slice(1);
+      setTimeout(() => setActiveId(id), 0);
+    }
   }, [location.pathname]);
 
-  // Scroll to top when clicking the logo / home
-  const scrollToTopAndReset = () => {
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveId("home");
+  const handleNavClick = (path: string) => {
+    if (path === "/") {
+      // Home click
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveId("home");
+      } else {
+        navigate("/");
+      }
+    } else {
+      navigate(path);
     }
-  };
-
-  // Scroll to a section on landing page only
-  const scrollToSection = (id: string) => {
-    if (location.pathname !== "/") return; // only active on landing page
-
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setActiveId(id);
-    }
-    setMobileOpen(false); // close mobile menu on mobile
+    setMobileOpen(false);
   };
 
   return (
     <nav className="fixed top-0 w-full bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-[1000] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-14 flex justify-between items-center">
-        {/* Logo / Home */}
-        <Link
-          to="/"
-          onClick={scrollToTopAndReset}
+        <button
+          onClick={() => handleNavClick("/")}
           className="text-gray-900 dark:text-white font-semibold text-xl tracking-tight hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
         >
           SOKPANHA PRAK
-        </Link>
+        </button>
 
-        {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8">
           {navigation.map((item) => {
-            const sectionId = item.path === "/" ? "home" : item.path.slice(1);
-            const isActive = activeId === sectionId;
+            const isActive =
+              activeId === (item.path === "/" ? "home" : item.path.slice(1));
             const Icon = item.icon;
 
             return (
               <li key={item.path} className="relative group">
                 <button
-                  onClick={() => scrollToSection(sectionId)}
+                  onClick={() => handleNavClick(item.path)}
                   className={`relative flex items-center gap-1.5 px-2 py-1 text-sm font-medium transition-all duration-300 transform ${
                     isActive
                       ? "text-blue-600 dark:text-blue-400"
@@ -106,7 +96,6 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Theme toggle + mobile menu button */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <button
@@ -122,7 +111,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <MobileMenu
         items={navigation}
         isOpen={mobileOpen}
