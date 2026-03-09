@@ -10,15 +10,13 @@ export default function Navbar() {
   const location = useLocation();
   const [activeId, setActiveId] = useState<string>("home");
 
+  // Update active section while scrolling on landing page
   useEffect(() => {
+    if (location.pathname !== "/") return; 
+
     let frame: number;
 
     const updateActive = () => {
-      if (location.pathname !== "/") {
-        setActiveId(location.pathname.slice(1));
-        return;
-      }
-
       const scrollPos = window.scrollY + 100;
       let current = "home";
 
@@ -44,6 +42,7 @@ export default function Navbar() {
     };
   }, [location.pathname]);
 
+  // Scroll to top when clicking the logo / home
   const scrollToTopAndReset = () => {
     if (location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,9 +50,22 @@ export default function Navbar() {
     }
   };
 
+  // Scroll to a section on landing page only
+  const scrollToSection = (id: string) => {
+    if (location.pathname !== "/") return; // only active on landing page
+
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setActiveId(id);
+    }
+    setMobileOpen(false); // close mobile menu on mobile
+  };
+
   return (
     <nav className="fixed top-0 w-full bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-[1000] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-14 flex justify-between items-center">
+        {/* Logo / Home */}
         <Link
           to="/"
           onClick={scrollToTopAndReset}
@@ -62,16 +74,17 @@ export default function Navbar() {
           SOKPANHA PRAK
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-8">
           {navigation.map((item) => {
-            const isActive =
-              activeId === (item.path === "/" ? "home" : item.path.slice(1));
+            const sectionId = item.path === "/" ? "home" : item.path.slice(1);
+            const isActive = activeId === sectionId;
             const Icon = item.icon;
 
             return (
               <li key={item.path} className="relative group">
-                <Link
-                  to={item.path}
+                <button
+                  onClick={() => scrollToSection(sectionId)}
                   className={`relative flex items-center gap-1.5 px-2 py-1 text-sm font-medium transition-all duration-300 transform ${
                     isActive
                       ? "text-blue-600 dark:text-blue-400"
@@ -87,12 +100,13 @@ export default function Navbar() {
                       isActive ? "scale-x-100" : ""
                     }`}
                   />
-                </Link>
+                </button>
               </li>
             );
           })}
         </ul>
 
+        {/* Theme toggle + mobile menu button */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <button
@@ -108,6 +122,7 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <MobileMenu
         items={navigation}
         isOpen={mobileOpen}
