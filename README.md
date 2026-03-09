@@ -4,7 +4,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 A modern, responsive developer portfolio built with **React**, **TypeScript**, and **TailwindCSS**, showcasing projects, skills, and contact information.  
-Optimized for recruiters to view your work online.
+Optimized for recruiters to view work online.
 
 ---
 
