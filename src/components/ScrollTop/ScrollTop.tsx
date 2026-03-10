@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
-import { ChevronUpIcon } from "@heroicons/react/24/outline"; 
+import { useLocation } from "react-router-dom";
+import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 interface ScrollTopProps {
-  showAfter?: number; 
+  showAfter?: number;
 }
 
 const ScrollTop: React.FC<ScrollTopProps> = ({ showAfter = 400 }) => {
   const [visible, setVisible] = useState(false);
+  const { pathname } = useLocation(); // track route changes
 
+  // 1️ Scroll to top whenever route changes
   useEffect(() => {
-    // FORCE TOP ON REFRESH: This ensures the user starts at the HeroSection
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]); // run every route change
 
-    const handleScroll = () => {
-      setVisible(window.scrollY > showAfter);
-    };
-
+  // 2️ Handle button visibility
+  useEffect(() => {
+    const handleScroll = () => setVisible(window.scrollY > showAfter);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [showAfter]);
