@@ -17,7 +17,7 @@ export default function LandingPage() {
       {/* Lazy Loaded Sections */}
       <SectionDivider />
       <Suspense fallback={<SectionLoader />}>
-        <AboutPage />
+        <AboutPage id="about"/>
       </Suspense>
 
       <SectionDivider />

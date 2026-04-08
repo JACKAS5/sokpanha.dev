@@ -7,7 +7,7 @@ import { SiReact, SiTypescript, SiNodedotjs, SiSpringboot, SiExpress } from "rea
 import profilePhoto from "../../assets/profile.jpg";
 
 const SOCIALS = [
-  { href: "https://github.com/JACKAS5", Icon: FaGithub, label: "GitHub", hover: "hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10" },
+  { href: "https://github.com/sokpanha12", Icon: FaGithub, label: "GitHub", hover: "hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10" },
   { href: "https://www.linkedin.com/in/sokpanha-prak-b88540350", Icon: FaLinkedin, label: "LinkedIn", hover: "hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10" },
   { href: "https://t.me/sokpanha05", Icon: FaTelegram, label: "Telegram", hover: "hover:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-500/10" },
 ];

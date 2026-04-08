@@ -34,7 +34,7 @@ export const CONTACT_CONFIG = {
     },
   ] as ContactItem[],
   socials: [
-    { name: "GitHub", href: "https://github.com/JACKAS5", icon: Github },
+    { name: "GitHub", href: "https://github.com/sokpanha12", icon: Github },
     { name: "LinkedIn", href: "https://www.linkedin.com/in/sokpanha-prak-b88540350", icon: Linkedin },
     { name: "Telegram", href: "https://t.me/sokpanha05", icon: Send },
   ] as SocialLink[],
