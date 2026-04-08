@@ -1,16 +1,25 @@
+import { motion } from "framer-motion";
+import { useLanguage } from "../../hooks/useLanguage";
+
 export default function AboutHeader() {
+  const { t } = useLanguage();
   return (
-    <div className="max-w-4xl mb-8 md:mb-12">
-      {/* Small Kicker for brand consistency */}
-      <h2 className="text-blue-600 dark:text-blue-500 font-bold tracking-[0.2em] uppercase text-xs mb-3">
-        My Journey
-      </h2>
-      
-      {/* High-impact Title */}
-      <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1] transition-colors duration-500">
-        Driven by <span className="text-blue-600 dark:text-blue-500">curiosity</span>, <br className="hidden md:block" />
-        defined by code.
+    <motion.div
+      className="text-center space-y-4"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/8 border border-blue-500/20 text-blue-600 dark:text-blue-400 font-bold tracking-[0.2em] uppercase text-[11px]">
+        {t("about.header.kicker")}
+      </span>
+      <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
+        {t("about.header.title")}
       </h1>
-    </div>
+      <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+        {t("about.header.subtitle")}
+      </p>
+    </motion.div>
   );
 }

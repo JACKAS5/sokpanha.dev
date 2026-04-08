@@ -37,7 +37,7 @@ export const projects: Project[] = [
     tech: [techMap.Python, techMap.Flask, techMap.MongoDB, techMap.Pytest, techMap.Docker, techMap.Postman],
     image: flashAuthImg,
     github: "https://github.com/JACKAS5/flask-auth-mongo",
-    demo: "#",
+    demo: null,
     category: "Backend",
   },
   {
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     tech: [techMap.SpringBoot, techMap.React, techMap.TypeScript, techMap.Tailwind, techMap.PostgreSQL, techMap.Docker],
     image: angkorlanceImg,
     github: "https://github.com/Panhavoan-Kymeas/AngkorLance/",
-    demo: "#",
+    demo: null,
     category: "Fullstack",
   },
 ];

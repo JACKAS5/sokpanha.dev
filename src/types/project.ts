@@ -14,6 +14,6 @@ export type Project = {
   tech: TechStack[];
   image: string;
   github: string;
-  demo: string;
+  demo: string | null;
   category: Category;
 };

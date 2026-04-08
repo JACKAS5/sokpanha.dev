@@ -1,9 +1,9 @@
+import { motion } from "framer-motion";
 import { STATIC_CERTIFICATIONS } from '../../config/certifications';
 
 export default function CertificationsSection() {
   return (
     <section className="py-16 max-w-5xl mx-auto px-4">
-      {/* Header Section */}
       <div className="flex items-center gap-6 mb-10">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white whitespace-nowrap">
           Certifications
@@ -11,14 +11,17 @@ export default function CertificationsSection() {
         <div className="h-px flex-1 bg-gradient-to-r from-gray-200 via-gray-100 to-transparent dark:from-gray-800 dark:via-gray-900" />
       </div>
 
-      {/* Single Column List for "Long Width" look */}
       <div className="flex flex-col gap-4">
-        {STATIC_CERTIFICATIONS.map((cert) => (
-          <div
+        {STATIC_CERTIFICATIONS.map((cert, i) => (
+          <motion.div
             key={cert.id}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
             className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-6 p-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 hover:bg-gray-50 dark:hover:bg-gray-800/40 hover:border-blue-500/30 transition-all duration-300 shadow-sm hover:shadow-md"
           >
-            {/* Logo Container - Keeps fixed size */}
+            {/* Logo Container */}
             <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white dark:bg-gray-800 shadow-inner border border-gray-100 dark:border-gray-700 flex items-center justify-center p-2 overflow-hidden">
               <img
                 src={cert.logo}
@@ -28,7 +31,7 @@ export default function CertificationsSection() {
               />
             </div>
 
-            {/* Content Container - Flex 1 allows it to take full width */}
+            {/* Content */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
@@ -39,8 +42,6 @@ export default function CertificationsSection() {
                     {cert.issuer}
                   </p>
                 </div>
-                
-                {/* Year tag moved to the right on desktop for a cleaner look */}
                 <span className="inline-flex items-center justify-center px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500 sm:order-last">
                   {cert.year}
                 </span>
@@ -66,13 +67,13 @@ export default function CertificationsSection() {
               </div>
             </div>
 
-            {/* Subtle Right Arrow Icon (only visible on hover) */}
+            {/* Hover Arrow */}
             <div className="hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity pr-2">
                <svg className="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                </svg>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

@@ -1,50 +1,41 @@
 import { lazy, Suspense } from "react";
 import HomePage from "./homepage/HomePage";
+import { SectionLoader } from "../components/ui/PageLoader";
 
-// Lazy load existing pages
+// Lazy load pages
 const AboutPage = lazy(() => import("./about/AboutPage"));
 const ProjectsPage = lazy(() => import("./project/ProjectsPage"));
 const ContactPage = lazy(() => import("./contact/ContactPage"));
 
+
 export default function LandingPage() {
   return (
-    <div className="flex flex-col">
-      {/* Home Section: Usually takes full viewport height.
-        We pass the ID here so the Navbar can jump to it.
-      */}
-      <HomePage id="" />
+    <>
+      {/* Home Section */}
+      <HomePage id="home" />
 
-      {/* Lazy Loaded Sections 
-        We use a wrapper to control the vertical rhythm between pages.
-      */}
-      <Suspense fallback={<PageLoader />}>
-        <div className="space-y-32 md:space-y-48 pb-32">
-          
-          {/* Subtle Horizontal Divider (Optional: keeps the "Pure" look) */}
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-100 dark:via-white/5 to-transparent" />
-
-          <AboutPage id="about" />
-
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-100 dark:via-white/5 to-transparent" />
-          
-          <ProjectsPage id="projects" />
-
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gray-100 dark:via-white/5 to-transparent" />
-
-          <ContactPage id="contact" />
-        </div>
+      {/* Lazy Loaded Sections */}
+      <SectionDivider />
+      <Suspense fallback={<SectionLoader />}>
+        <AboutPage />
       </Suspense>
-    </div>
+
+      <SectionDivider />
+      <Suspense fallback={<SectionLoader />}>
+        <ProjectsPage id="projects" />
+      </Suspense>
+
+      <SectionDivider />
+      <Suspense fallback={<SectionLoader />}>
+        <ContactPage id="contact" />
+      </Suspense>
+    </>
   );
 }
 
-function PageLoader() {
+// Reusable divider component
+function SectionDivider() {
   return (
-    <div className="flex flex-col justify-center items-center py-40 space-y-4">
-      <div className="animate-spin h-10 w-10 border-2 border-blue-600 border-t-transparent rounded-full"></div>
-      <span className="text-xs uppercase tracking-[0.3em] text-gray-400 font-bold">
-        Loading Experience
-      </span>
-    </div>
+    <div className="my-28 md:my-36 h-[1px] w-full bg-gradient-to-r from-transparent via-gray-200 dark:via-white/8 to-transparent" />
   );
 }

@@ -1,30 +1,37 @@
 import ProjectGrid from "../../components/ProjectsPage/ProjectGrid";
+import { motion } from "framer-motion";
+import { useLanguage } from "../../hooks/useLanguage";
 
 interface PageProps {
   id?: string;
 }
 
-export default function ProjectsPage({ id }: PageProps) {
-  return (
-    <section id={id} className="scroll-mt-24 space-y-16">
-      {/* Page Header - Aligned with the rest of your brand */}
-      <header className="max-w-3xl">
-        <h2 className="text-blue-600 dark:text-blue-500 font-bold tracking-[0.2em] uppercase text-xs mb-3">
-          Selected Works
-        </h2>
-        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
-          Showcasing digital <span className="text-blue-600 dark:text-blue-500">innovation</span>.
-        </h1>
-        <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg md:text-xl leading-relaxed">
-          A collection of projects spanning web and mobile development, 
-          built with a focus on clean code and user-centric design.
-        </p>
-      </header>
+export default function ProjectsPage({ id } : PageProps) {
+  const { t } = useLanguage();
 
-      {/* Projects Grid - Now takes the full container width */}
-      <div className="pt-8">
-        <ProjectGrid />
-      </div>
+  return (
+    <section id={id} className="scroll-mt-24 space-y-14">
+      {/* Header */}
+      <motion.header
+        className="max-w-3xl"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/8 border border-blue-500/20 text-blue-600 dark:text-blue-400 font-bold tracking-[0.2em] uppercase text-[11px] mb-4">
+          {t("projects.kicker")}
+        </span>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
+          {t("projects.title")}
+        </h1>
+        <p className="mt-5 text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
+          {t("projects.subtitle")}
+        </p>
+      </motion.header>
+
+      {/* Projects grid */}
+      <ProjectGrid />
     </section>
   );
 }

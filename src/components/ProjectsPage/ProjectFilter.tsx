@@ -1,32 +1,46 @@
+import { motion } from "framer-motion";
 import type { Category } from "../../types/project";
-import type { Dispatch, SetStateAction } from "react";
-import { categories } from "../../config/categories";
 
-type Props = {
+const CATEGORIES: (Category | "All")[] = ["All", "Frontend", "Backend", "Fullstack"];
+
+interface Props {
   activeCategory: Category | "All";
-  setActiveCategory: Dispatch<SetStateAction<Category | "All">>;
-};
+  setActiveCategory: (c: Category | "All") => void;
+}
 
 export default function ProjectFilter({ activeCategory, setActiveCategory }: Props) {
   return (
-    <div className="flex flex-wrap justify-center gap-4">
-      {categories.map((category) => {
-        const isActive = activeCategory === category;
+    <div className="flex flex-wrap justify-center gap-3">
+      {CATEGORIES.map((cat) => {
+        const isActive = activeCategory === cat;
 
         return (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300
-              ${
-                isActive
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700"
-              }
-            `}
+          <motion.button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            whileTap={{ scale: 0.95 }}
+            className="relative px-5 py-2 rounded-full text-sm font-bold transition-all duration-200"
           >
-            {category}
-          </button>
+            {/* Active pill */}
+            {isActive && (
+              <motion.span
+                layoutId="filter-pill"
+                className="absolute inset-0 rounded-full bg-blue-500 dark:bg-blue-600 shadow-md"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
+
+            {/* Text */}
+            <span
+              className={`relative z-10 ${
+                isActive
+                  ? "text-white"
+                  : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              }`}
+            >
+              {cat}
+            </span>
+          </motion.button>
         );
       })}
     </div>

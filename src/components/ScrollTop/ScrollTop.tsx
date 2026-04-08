@@ -8,17 +8,17 @@ interface ScrollTopProps {
 
 const ScrollTop: React.FC<ScrollTopProps> = ({ showAfter = 400 }) => {
   const [visible, setVisible] = useState(false);
-  const { pathname } = useLocation(); // track route changes
+  const { pathname } = useLocation();
 
-  // 1️ Scroll to top whenever route changes
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
-  }, [pathname]); // run every route change
+  }, [pathname]);
 
-  // 2️ Handle button visibility
+  // Show button after scroll
   useEffect(() => {
     const handleScroll = () => setVisible(window.scrollY > showAfter);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [showAfter]);
 
@@ -29,16 +29,19 @@ const ScrollTop: React.FC<ScrollTopProps> = ({ showAfter = 400 }) => {
   return (
     <button
       onClick={scrollToTop}
-      className={`
-        fixed bottom-8 right-8 z-50 p-3 rounded-full 
-        bg-white/10 dark:bg-white/5 backdrop-blur-md 
-        border border-gray-200 dark:border-white/10
-        text-gray-900 dark:text-white shadow-2xl
-        transition-all duration-500 ease-in-out transform
-        hover:bg-blue-600 hover:text-white hover:border-blue-500 hover:-translate-y-2
-        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
-      `}
       aria-label="Scroll to top"
+      className={`
+        fixed bottom-6 right-6 z-50 p-3 rounded-full
+        bg-white dark:bg-gray-800/80
+        border border-gray-200 dark:border-gray-600
+        text-gray-900 dark:text-white
+        shadow-lg dark:shadow-black/30
+        backdrop-blur-md
+        transition-all duration-300 ease-in-out transform
+        hover:bg-blue-600 hover:text-white hover:border-blue-500 hover:scale-110
+        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1
+        ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}
+      `}
     >
       <ChevronUpIcon className="w-5 h-5 stroke-[2.5]" />
     </button>

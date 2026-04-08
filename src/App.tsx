@@ -1,13 +1,19 @@
-import { AppRoutes } from "./routes/AppRoutes";
-import { routes } from "./routes/routesConfig";
-import ScrollTop from "./components/ScrollTop/ScrollTop";
+import { ThemeProvider } from "./context/ThemeProvider";
+import { LanguageProvider } from "./context/LanguageContext.tsx";
+import MainLayout from "./layouts/MainLayout";
+import LandingPage from "./pages/LandingPage";
+import ScrollTop from "./components/ScrollTop/ScrollTop.tsx";
 
 function App() {
   return (
-    <>
-      <AppRoutes routes={routes} />
-      <ScrollTop showAfter={400} /> 
-    </>
+    <ThemeProvider>
+      <LanguageProvider>
+        <MainLayout>
+          <LandingPage />
+        </MainLayout>
+        <ScrollTop showAfter={400} />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

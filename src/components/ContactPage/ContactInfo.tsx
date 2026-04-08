@@ -1,6 +1,8 @@
+import { useLanguage } from "../../hooks/useLanguage";
 import { CONTACT_CONFIG } from "../../config/contact";
 
 export default function ContactInfo() {
+  const { t } = useLanguage();
   const { header, details } = CONTACT_CONFIG;
 
   return (
@@ -19,7 +21,7 @@ export default function ContactInfo() {
       <div className="grid gap-8">
         {details.map((item) => (
           <div key={item.label} className="group flex items-center gap-5">
-            {/* Icon Container with subtle "Ghost" style */}
+            {/* Icon */}
             <div className="flex items-center justify-center w-12 h-12 rounded-2xl 
                             bg-gray-50 text-blue-600 
                             dark:bg-white/[0.05] dark:text-blue-400 
@@ -28,14 +30,16 @@ export default function ContactInfo() {
               <item.icon size={22} strokeWidth={1.5} />
             </div>
 
-            {/* Text Content */}
+            {/* Text */}
             <div className="flex flex-col">
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-0.5">
-                {item.label}
+                {t(item.label)}
               </span>
               {item.href ? (
                 <a
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-lg font-medium text-gray-900 dark:text-gray-200 
                              hover:text-blue-600 dark:hover:text-blue-400 
                              transition-colors duration-200"
